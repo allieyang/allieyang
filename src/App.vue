@@ -1,14 +1,14 @@
 <template>
-<Todo/>
+<CityCafe/>
 </template>
 
 <script>
-import Todo from './components/Todo.vue'
+import CityCafe from './components/CityCafe.vue'
 
 export default {
   name: 'App',
   components: {
-    Todo
+   CityCafe
   }
 }
 </script>

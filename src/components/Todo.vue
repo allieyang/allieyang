@@ -1,14 +1,25 @@
 <template>
   <div>
+     
     <input v-model="text" />
-    <button> @clickAdd</button>
-    {{ text }}
-    <ul>
-      <li v-for="item in list" :key="item">
-        {{ item }}
+    <button @click="add" :disabled="!text">Add </button>
+    <br/>
+    <h2 :class="{red: invalid }">
+         {{textLength}}
+         </h2>
+    <ul id="list">
+      <li
+      :class="{grey: item.done}"   
+        v-for="item in list" 
+      :key="item.text" 
+      >
+      <input type="checkbox"
+      v-mode="item.done"
+      />
+           {{ item.text }}
       </li>
     </ul>
-    {{ text }}
+
   </div>
 </template>
 
@@ -16,17 +27,39 @@
 export default {
   data: () => ({
     text: "",
-    list: ["a", "b", "c"],
+    list: [],
   }),
+computed:{
+    textLength()
+{ return this.text.length;
+},
+invalid(){
+    //invalid()
+   return this.text.length <=0||this.text.length > 10;
+}
+},
+
  methods: {
     add() {
-      if(!this.text)
-      this.list.push(ghis.text);
+      if(!this.invalid) return;
+     // if(this.isRed) return;
+      const item ={
+          text: this.text,
+          done: false,
+      };
+      this.list.push(item);
       this.text = "";
-      },
+      },   
    },
 };
 </script>
+
 <style scoped>
+.grey {
+    color: #ddd;
+}
+.red {
+     color: red;
+ }
 </style>
 
