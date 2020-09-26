@@ -1,0 +1,4 @@
+vscode://vscode.github-authentication/did-authenticate?windowid=1&code=c87fe7a5d486b23cb4d3&state=65603cf7-e20c-42cc-8c8d-9a3dd025c477
+
+git config user.email yang.allie@gmail.com
+
