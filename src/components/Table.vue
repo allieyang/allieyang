@@ -1,5 +1,6 @@
 <template>
   <v-container>
+       <TableInput @input="add"/>
     <v-data-table 
     :items="people" 
     :headers="headers" >
@@ -8,13 +9,18 @@
            <v-img :src="value"/>
         </v-avatar>
     </template>
-    </v-data-table>
+    </v-data-table>   
   </v-container>
 </template>
 
 <script>
 import people from "../people.json";
+import TableInput from "./TableInput";
+
 export default {
+    components:{
+     TableInput
+    },
   data: () => ({
     people,
   }),
@@ -29,5 +35,10 @@ export default {
       ];
     },
   },
+  methods:{
+      add(person){
+  this.people.unshift(person)
+      }
+  }
 };
 </script>
