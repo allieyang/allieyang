@@ -2,7 +2,13 @@
   <v-container>
     <v-data-table 
     :items="people" 
-    :headers="headers" />
+    :headers="headers" >
+    <template #[`item.picture`]="{value}">
+        <v-avatar>
+           <v-img :src="value"/>
+        </v-avatar>
+    </template>
+    </v-data-table>
   </v-container>
 </template>
 
@@ -15,6 +21,7 @@ export default {
   computed: {
     headers() {
       return [
+          { text: "Picture", value: "picture" },
           { text: "姓名", value: "name" },
           { text: "E-mail", value: "email" },
           { text: "性別", value: "gender" },
