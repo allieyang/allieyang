@@ -1,8 +1,16 @@
 <template>
-  <div>
-    <input v-model="text" />
-    <button @click="add" :disabled="invalid">Add</button>
-  </div>
+<v-form @submit.prevent="add">
+  <v-container>
+    <v-row>
+      <v-col cols="9">    
+      <v-text-field v-model="text" />
+      </v-col>
+      <v-col cols="3">
+      <v-btn type="submit" :disabled="invalid">Add</v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
+  </v-form>
 </template>
 
 <script>
@@ -19,7 +27,7 @@ export default {
     add() {
       if (this.invalid) return;
       this.$emit("input", this.text);
-      this.text="";
+      this.text = "";
     },
   },
 };

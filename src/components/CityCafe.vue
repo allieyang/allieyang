@@ -1,20 +1,28 @@
 <template>
-  <div>
-    {{ cityCode }}
+  <v-container>
+    <v-row>
+      <v-col cols="6">
+        {{ cityCode }}
 
-    <select v-model="cityCode">
-      <option v-for="city in cities" :key="city.code" :value="city.code">
-        {{ city.name }}
-      </option>
-    </select>
-
-   {{ regionCode }}
-    <select v-model="regionCode">
-      <option v-for="region in regions" :key="region.code" :value="region.code">
-        {{ region.name }}
-      </option>
-    </select>
-  </div>
+        <v-select
+          v-model="cityCode"
+          :items="cities"
+          item-value="code"
+          item-text="name"
+        />
+      </v-col>
+      <br />
+      <v-col cols="6">
+        {{ regionCode }}
+        <v-select
+          v-model="regionCode"
+          :items="regions"
+          item-value="code"
+          item-text="name"
+        />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -35,9 +43,9 @@ export default {
     },
   },
   watch: {
-      cityCode: {
-          handler(){
-          this.regionCode=this.regions[0].code;
+    cityCode: {
+      handler() {
+        this.regionCode = this.regions[0].code;
       },
       immediate: true,
     },
