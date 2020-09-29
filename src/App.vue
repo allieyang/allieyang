@@ -1,16 +1,23 @@
 <template>
-<CityCafeAsync/>
+<Todo/>
+
 </template>
 
 <script>
-import CityCafeAsync from './components/CityCafeAsync.vue'
+import Todo from './components/Todo.vue'
 
 export default {
   name: 'App',
   components: {
-   CityCafeAsync
-  }
-}
+   Todo,
+  },
+   methods: {
+     cardClick() {
+       console.log('card click in app');
+  
+     },
+   },
+};
 </script>
 
 <style>

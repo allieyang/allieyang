@@ -1,65 +1,42 @@
 <template>
   <div>
-     
-    <input v-model="text" />
-    <button @click="add" :disabled="!text">Add </button>
-    <br/>
-    <h2 :class="{red: invalid }">
-         {{textLength}}
-         </h2>
+    <TodoInput @input="onInput" />
+
     <ul id="list">
-      <li
-      :class="{grey: item.done}"   
-        v-for="item in list" 
-      :key="item.text" 
-      >
-      <input type="checkbox"
-      v-mode="item.done"
-      />
-           {{ item.text }}
+      <li :class="{ grey: item.done }" v-for="item in list" :key="item.text">
+        <input type="checkbox" v-mode="item.done" />
+        {{ item.text }}
       </li>
     </ul>
-
   </div>
 </template>
 
 <script>
+import TodoInput from "./TodoInput";
+
 export default {
+  components: { TodoInput },
   data: () => ({
-    text: "",
     list: [],
   }),
-computed:{
-    textLength()
-{ return this.text.length;
-},
-invalid(){
-    //invalid()
-   return this.text.length <=0||this.text.length > 10;
-}
-},
-
- methods: {
-    add() {
-      if(!this.invalid) return;
-     // if(this.isRed) return;
-      const item ={
-          text: this.text,
-          done: false,
-      };
-      this.list.push(item);
-      this.text = "";
-      },   
-   },
+  methods: {
+    onInput(text) {
+      const item = {
+        text,
+        done: false,
+      }
+      this.list.unshift(item);
+    }
+  },
 };
 </script>
 
 <style scoped>
 .grey {
-    color: #ddd;
+  color: #ddd;
 }
 .red {
-     color: red;
- }
+  color: red;
+}
 </style>
 
